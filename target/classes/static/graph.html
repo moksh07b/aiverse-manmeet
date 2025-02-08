@@ -1,0 +1,106 @@
+<html lang="en">
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <title>Social Media Posts Analysis</title>
+    <style>
+        th, td { padding: 10px; border: 1px solid #ddd;}
+        th { background-color: #f4f4f4; }
+         .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Two equal-width columns */
+            width: 100%;
+            height: 100vh; /* Full viewport height */
+        }
+    </style>
+</head>
+<body>
+<h2>
+    <center>Social Media Posts Analysis</center>
+</h2>
+
+<div class="container">
+    <div id="chart_div" style="width: 700px; height: 500px;"></div>
+
+    <div>
+        <table id="postsTable">
+            <thead>
+            <tr>
+                <th>Social Media Post</th>
+                <th>Sentiment</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Data will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+
+
+<script>
+    async function fetchData() {
+        // Replace with your actual API endpoint
+        const response = await fetch('api/posts');
+        const data = await response.json();
+
+        // Populate the table with JSON data
+        const tableBody = document.getElementById('postsTable').querySelector('tbody');
+        tableBody.innerHTML = ''; // Clear any existing content
+
+        data.forEach(post => {
+            const row = document.createElement('tr');
+            const postCell = document.createElement('td');
+            postCell.textContent = post.post;
+            row.appendChild(postCell);
+
+            const sentimentCell = document.createElement('td');
+            sentimentCell.textContent = post.sentiment;
+            row.appendChild(sentimentCell);
+
+            tableBody.appendChild(row);
+        });
+    }
+
+
+    fetchData();
+</script>
+
+
+<script type="text/javascript">
+    // Load the Google Charts library
+    google.charts.load('current', { packages: ['corechart'] });
+
+    async function fetchAndDrawChart() {
+        // Replace with your actual API endpoint
+        const response = await fetch('/api/graphdata');
+        const data = await response.json();
+
+        // Prepare data in the format Google Charts expects
+        const chartData = [['Sentiment', 'Count'], ...data];
+
+        // Draw chart with fetched data
+        drawChart(chartData);
+    }
+
+    function drawChart(chartData) {
+        const data = google.visualization.arrayToDataTable(chartData);
+
+        const options = {
+            title: '',
+            pieHole: 0.4,
+            colors: ['#FF6384', '#FFCE56', '#36A2EB'],
+        };
+
+        const chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+    }
+
+    // Draw the chart after the library has loaded
+    google.charts.setOnLoadCallback(fetchAndDrawChart);
+</script>
+
+
+</body>
+</html>

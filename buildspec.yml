@@ -1,0 +1,20 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      java: corretto21  # Use Amazon Corretto 21
+  pre_build:
+    commands:
+      - echo "Installing dependencies"
+      - mvn clean install -DskipTests
+  build:
+    commands:
+      - echo "Building the application"
+      - mv target/*.jar application.jar
+  post_build:
+    commands:
+      - echo "Build complete"
+artifacts:
+  files:
+    - application.jar
+  discard-paths: yes
