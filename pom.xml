@@ -47,7 +47,7 @@
             <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
 
-        <!-- Optional Dependencies (Excluded from Final JAR) -->
+        <!-- Optional Dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -88,7 +88,7 @@
             <optional>true</optional> <!-- Mark models as optional -->
         </dependency>
 
-        <!-- Apache Camel (Consider narrowing down usage) -->
+        <!-- Apache Camel -->
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-spring-boot-starter</artifactId>
@@ -133,9 +133,10 @@
                                 <filter>
                                     <artifact>*:*</artifact>
                                     <excludes>
-                                        <exclude>**/*.xml</exclude>
-                                        <exclude>**/*.txt</exclude>
-                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>**/*.xml</exclude> <!-- Exclude XML files -->
+                                        <exclude>**/*.txt</exclude> <!-- Exclude text files -->
+                                        <exclude>META-INF/*.SF</exclude> <!-- Exclude signature files -->
+                                        <exclude>META-INF/maven/**</exclude> <!-- Exclude Maven metadata -->
                                     </excludes>
                                 </filter>
                             </filters>
