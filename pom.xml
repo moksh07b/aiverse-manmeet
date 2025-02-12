@@ -156,11 +156,11 @@
             </plugin>
 
             <!-- Docker plugin (if you need to build container images) -->
-            <!--<plugin>
+            <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>dockerfile-maven-plugin</artifactId>
                 <version>1.4.13</version>
-            </plugin> -->
+            </plugin>
         </plugins>
     </build>
 
