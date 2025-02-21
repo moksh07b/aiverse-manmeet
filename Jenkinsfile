@@ -5,7 +5,7 @@ pipeline {
         stage('build') {
             steps {
                 bat 'java -version'
-                bat 'mvn -version'
+                bat 'mvn -v'
                 bat 'mvn clean verify'
             }
         }
