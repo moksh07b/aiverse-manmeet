@@ -18,10 +18,10 @@ pipeline {
         stage('test') {
             steps {
                 // Run the application and create the deployment package.
-                bat 'nohup java -jar target/aiverse-0.0.1-SNAPSHOT.jar &'
-                bat '''
-                    zip -r deployment-${BUILD_NUMBER}.zip target/aiverse-0.0.1-SNAPSHOT.jar appspec.yml scripts/
-                '''
+                   bat 'mvn test'
+
+        // Archive the JUnit test results
+                junit 'target/surefire-reports/*.xml'
             }
         }
 
