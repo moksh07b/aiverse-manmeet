@@ -143,6 +143,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                    <configuration>
+                        <mainClass>com.aiverse.AIVerseApplication</mainClass>
+                    </configuration>
             </plugin>
 
             <!-- Docker plugin (if you need to build container images) -->
