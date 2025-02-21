@@ -4,17 +4,17 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'java -version'
-                sh 'mvn -version'
-                sh 'mvn clean verify'
+                bat 'java -version'
+                bat 'mvn -version'
+                bat 'mvn clean verify'
             }
         }
 
         stage('test') {
             steps {
                 // Run the application and create the deployment package.
-                sh 'nohup java -jar target/aiverse-0.0.1-SNAPSHOT.jar &'
-                sh '''
+                bat 'nohup java -jar target/aiverse-0.0.1-SNAPSHOT.jar &'
+                bat '''
                     zip -r deployment-${BUILD_NUMBER}.zip target/aiverse-0.0.1-SNAPSHOT.jar appspec.yml scripts/
                 '''
             }
@@ -23,7 +23,7 @@ pipeline {
         stage('analysis') {
             steps {
                 withSonarQubeEnv('sonarqube') {
-                    sh """
+                    bat """
                         mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \\
                           -DskipTests \\
                           -Dsonar.projectKey=Manmeetkaur06_aiverse \\
@@ -37,7 +37,7 @@ pipeline {
         stage('deploy') {
             steps {
                 withAWS(credentials: 'aws-cred', region: 'eu-north-1') {
-                    sh '''
+                    bat '''
                         # Upload the jar file to S3
                         aws s3 cp target/aiverse-0.0.1-SNAPSHOT.jar s3://myaiversebucket/aiverse-${BUILD_NUMBER}.jar
 
@@ -59,7 +59,7 @@ pipeline {
         stage('release') {
             steps {
                 withAWS(credentials: 'aws-cred', region: 'eu-north-1') {
-                    sh '''
+                    bat '''
                         aws deploy create-deployment \
                           --application-name aiverse \
                           --deployment-group-name aiverse-group \
