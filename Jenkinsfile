@@ -1,18 +1,9 @@
 pipeline {
     agent any
 
-    environment {
-        JAVA_HOME    = "/Library/Java/JavaVirtualMachines/jdk-22.jdk/Contents/Home"
-        MAVEN_HOME   = "/opt/homebrew/Cellar/maven/3.9.9/libexec"
-        AWS_CLI_PATH = "/usr/local/bin" // Updated to the correct AWS CLI path
-        PATH         = "${JAVA_HOME}/bin:${MAVEN_HOME}/bin:${AWS_CLI_PATH}:$PATH"
-    }
-
     stages {
         stage('build') {
             steps {
-                // Clone repository and set up environment, then build and run tests.
-                git branch: 'main', url: 'https://github.com/Manmeetkaur06/aiverse.git'
                 sh 'java -version'
                 sh 'mvn -version'
                 sh 'mvn clean verify'
