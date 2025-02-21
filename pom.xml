@@ -144,7 +144,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                     <configuration>
-                        <mainClass>ai.verse.AIVerseApplication</mainClass>
+                        <mainClass>com.aiverse.AIVerseApplication</mainClass>
                     </configuration>
             </plugin>
 
