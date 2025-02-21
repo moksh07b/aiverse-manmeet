@@ -26,18 +26,19 @@ pipeline {
         }
 
         stage('analysis') {
-            steps {
-                withSonarQubeEnv('sonarqube') {
-                    bat """
-                        mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \\
-                          -DskipTests \\
-                          -Dsonar.projectKey=Manmeetkaur06_aiverse \\
-                          -Dsonar.organization=manmeetkaur06 \\
-                          -Dsonar.host.url=https://sonarcloud.io
-                    """
-                }
-            }
+    steps {
+        withSonarQubeEnv('sonarqube') {
+            bat """
+                mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar ^
+                  -DskipTests ^
+                  -Dsonar.projectKey=Manmeetkaur06_aiverse ^
+                  -Dsonar.organization=manmeetkaur06 ^
+                  -Dsonar.host.url=https://sonarcloud.io
+            """
         }
+    }
+}
+
 
         stage('deploy') {
             steps {
