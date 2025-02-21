@@ -11,6 +11,7 @@ pipeline {
             steps {
                 bat 'java -version'
                 bat 'mvn -v'
+                echo "ABC"
                 
             }
         }
