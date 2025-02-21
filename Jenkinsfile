@@ -1,10 +1,17 @@
 pipeline {
     agent any
 
+    environment{
+        MAVEN_HOME = 'C:\\Program Files\\Maven\\apache-maven-3.9.9'
+        PATH = "${MAVEN_HOME}\\bin;${env.PATH}"
+    }
+
     stages {
         stage('build') {
             steps {
                 bat 'java -version'
+                bat 'mvn -v
+                
             }
         }
 
