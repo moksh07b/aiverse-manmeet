@@ -14,7 +14,7 @@ pipeline {
         stage('build') {
             steps {
                 // Clone repository and set up environment, then build and run tests.
-                git branch: 'main', url: 'https://github.com/moksh07b/aiverse-manmeet.git'
+                git branch: 'new', url: 'https://github.com/moksh07b/aiverse-manmeet.git'
                 sh 'java -version'
                 sh 'mvn -version'
                 sh 'mvn clean verify'
