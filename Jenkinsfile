@@ -4,7 +4,7 @@ pipeline {
     environment {
         JAVA_HOME    = "/Library/Java/JavaVirtualMachines/jdk-22.jdk/Contents/Home"
         MAVEN_HOME   = "/opt/homebrew/Cellar/maven/3.9.9/libexec"
-        AWS_CLI_PATH = "/usr/local/bin" // Updated to the correct AWS CLI path
+        AWS_CLI_PATH = "/usr/local/bin/aws" // Updated to the correct AWS CLI path
         PATH         = "${JAVA_HOME}/bin:${MAVEN_HOME}/bin:${AWS_CLI_PATH}:$PATH"
     }
 
