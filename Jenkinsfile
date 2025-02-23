@@ -4,7 +4,7 @@ pipeline {
     environment {
     JAVA_HOME    = "/usr/lib/jvm/java-21-openjdk-amd64"
     MAVEN_HOME   = "/opt/apache-maven-3.9.9"
-    AWS_CLI_PATH = "/usr/local/bin" // Updated to the correct AWS CLI path
+    AWS_CLI_PATH = "/usr/local/bin/aws" // Updated to the correct AWS CLI path
     PATH = "${JAVA_HOME}/bin:${MAVEN_HOME}/bin:${AWS_CLI_PATH}:$PATH"
 
 }
@@ -31,19 +31,19 @@ pipeline {
             }
         }
 
-        stage('analysis') {
-            steps {
-                withSonarQubeEnv('sonarqube') {
-                    sh """
-                        mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \\
-                          -DskipTests \\
-                          -Dsonar.projectKey=Manmeetkaur06_aiverse \\
-                          -Dsonar.organization=manmeetkaur06 \\
-                          -Dsonar.host.url=https://sonarcloud.io
-                    """
-                }
-            }
-        }
+        // stage('analysis') {
+        //     steps {
+        //         withSonarQubeEnv('sonarqube') {
+        //             sh """
+        //                 mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \\
+        //                   -DskipTests \\
+        //                   -Dsonar.projectKey=Manmeetkaur06_aiverse \\
+        //                   -Dsonar.organization=manmeetkaur06 \\
+        //                   -Dsonar.host.url=https://sonarcloud.io
+        //             """
+        //         }
+        //     }
+        // }
         
         // stage("Deploy and Release"){
         //     steps{
