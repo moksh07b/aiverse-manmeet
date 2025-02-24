@@ -19,6 +19,8 @@ pipeline {
                 sh 'mvn -version'
                 sh 'mvn clean verify'
                 echo "Hello Moksh"
+                echo $JAVA_HOME
+                sh "whoami"
             }
         }
 
